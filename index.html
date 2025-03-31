@@ -14,7 +14,7 @@
   <div id="app">
     <div class="product-display">
       <div class="product-container">
-        <div class="product-image">
+        <div><div class="product-image">
           <!--IMAGEM DO PRODUTO-->
           <img :src="image" alt="img-product"> 
         </div>
@@ -30,6 +30,27 @@
             </li>
           </ul>
           <div v-for="variant in variants">
+            {{variant.color}}
+        </div>
+        
+        </div>
+        <div>
+          <div class="product-image">
+            <img :src="image2" alt="img-product2">
+          </div>
+        </div> 
+          <div class="product-info">
+            <!--INFO DO PRODUTO-->
+            <h1>{{ product_title }}</h1>
+            <p v-if="InStock > 10">In Stock</p>
+            <p v-else-if="InStock <= 10 && InStock >1"> Almost of out</p>
+            <p v-else>Out of stock</p>
+            <ul>
+              <li v-for="detail in details">
+              {{ detail }}
+              </li>
+            </ul> 
+            <div v-for="variant in variants">
               {{variant.color}}
           </div>
         </div>
@@ -45,6 +66,7 @@
             return {
               product_title: ref("T-Shirt"),
               image: ref ("assets/images/t-shirt-blue.png"),
+              image2: ref ("assets/images/t-shirt-green.png"),
               InStock: ref(0),
               details: ['50% Cotton', '30% Polyester', '20% Woll'],
               variants: [{id:1, color: 'blue'}, {id:2, color: 'green'}]  
